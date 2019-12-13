@@ -1,6 +1,6 @@
 const request = require('supertest')
 const expect = require('chai').expect
-const app = require('../app')
+const app = require('../index')
 
 describe('Getting users', () => {
     it('should return the name and ids of all users', async () => {
