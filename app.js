@@ -6,8 +6,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const config = require('./config')
+const mongoose = require('mongoose')
+const cors = require('cors')
 
+config.init()
 
+mongoose.connect('mongodb://0.0.0.0:27017/cs3051', {useNewUrlParser: true, useUnifiedTopology: true})
 
 var app = express();
 
@@ -20,5 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/products', productsRouter);
+app.use(cors())
+
 
 module.exports = app;
